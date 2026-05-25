@@ -1,43 +1,831 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jean-Raphaël Julien - Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0c0d" />
+    <title>Jean-Raphaël Julien — Data Scientist · IA & Deep Learning</title>
+    <meta
+      name="description"
+      content="Portfolio de Jean-Raphaël Julien — data scientist spécialisé en intelligence artificielle, deep learning et systèmes algorithmiques."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Background atmosphere -->
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <canvas class="cursor-fx" id="cursor-fx" aria-hidden="true"></canvas>
 
-  <!-- Section principale -->
-  <section class="text-center py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-    <h1 class="text-4xl font-bold mb-2">Jean-Raphaël Julien</h1>
-    <p class="text-lg">Data Scientist | Intelligence Artificielle & Deep Learning</p>
-    <div class="mt-6 space-x-4">
-      <a href="https://github.com/jrj37" class="bg-white text-blue-600 px-4 py-2 rounded-lg">GitHub</a>
-      <a href="https://www.linkedin.com/in/jeanraphaeljulien" class="bg-white text-blue-600 px-4 py-2 rounded-lg">LinkedIn</a>
+    <!-- Ticker tape -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="ticker-track"></div>
     </div>
-  </section>
 
-  <!-- Projets -->
-  <section class="max-w-4xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-8">Projets</h2>
-
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h3 class="text-xl font-bold mb-2">🎰 Détection de tumeurs de au cerveau</h3>
-        <p>Entrainement d'un VIT</p>
-      </div>
-
-  <!-- Compétences -->
-  <section class="bg-gray-100 py-16">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-6">Compétences</h2>
-      <p>Python, PyTorch, TensorFlow, Pandas, Scikit-Learn, FastAPI, React, Optuna, SQL</p>
+    <!-- Floating clock — top left corner -->
+    <div class="corner-clock" aria-label="Heure locale à Paris">
+      <span class="corner-clock__pulse" aria-hidden="true"></span>
+      <span class="corner-clock__time mono" id="clock">--:--:--</span>
+      <span class="corner-clock__sep mono mono--dim" aria-hidden="true">·</span>
+      <span class="corner-clock__zone mono mono--dim">PARIS&nbsp;·&nbsp;UTC+1</span>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <footer class="text-center py-10 bg-gray-800 text-white">
-    <p>© 2025 Jean-Raphaël Julien — <a href="mailto:jean.raphael2810@icloud.com" class="underline">Me contacter</a></p>
-  </footer>
-</body>
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <header class="hero__intro">
+          <div class="hero__meta">
+            <span class="tag tag--accent">AI ENGINEER</span>
+            <span class="tag">DATA SCIENTIST</span>
+          </div>
+
+          <h1 class="hero__name" aria-label="Jean-Raphaël Julien">
+            <span class="hero__line">Jean<span class="hero__dash">‑</span>Raphaël</span>
+            <span class="hero__line hero__line--last">
+              Julien<sup class="hero__star" aria-hidden="true">✦</sup>
+            </span>
+          </h1>
+        </header>
+
+        <div class="cloud-stage">
+          <span class="cloud-stage__caption cloud-stage__caption--br mono mono--dim">
+            JRJ37&nbsp;/&nbsp;2026
+          </span>
+
+          <div class="cloud" aria-label="Galaxie interactive — chaque point coloré est un projet">
+            <canvas id="cloud-canvas" class="cloud__canvas"></canvas>
+            <div class="cloud__controls">
+              <button class="cloud__btn" type="button" data-zoom-action="out" aria-label="Zoom arrière">−</button>
+              <button class="cloud__btn cloud__btn--small" type="button" data-zoom-action="reset" aria-label="Réinitialiser la vue">⟲</button>
+              <button class="cloud__btn" type="button" data-zoom-action="in" aria-label="Zoom avant">+</button>
+            </div>
+          </div>
+        </div>
+
+        <footer class="hero__outro">
+          <p class="hero__lead">
+            Chaque étoile colorée de la galaxie est un projet&nbsp;— <em>glissez</em>
+            pour la faire pivoter, cliquez pour explorer.
+          </p>
+
+          <div class="hero__legend">
+            <button
+              type="button"
+              class="legend-item"
+              data-marker-jump="BOT TRADING"
+              onclick="document.getElementById('bot-trading')?.scrollIntoView({behavior:'smooth'})"
+            >
+              <span class="legend-item__dot legend-item__dot--red" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Bot trading</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+            </button>
+            <button
+              type="button"
+              class="legend-item"
+              data-marker-jump="JOURNAL SPORT"
+              onclick="document.getElementById('journal-sport')?.scrollIntoView({behavior:'smooth'})"
+            >
+              <span class="legend-item__dot legend-item__dot--green" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Journal sport</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+            </button>
+            <button
+              type="button"
+              class="legend-item"
+              data-marker-jump="TUMOR DETECTION"
+              onclick="document.getElementById('tumor-detection')?.scrollIntoView({behavior:'smooth'})"
+            >
+              <span class="legend-item__dot legend-item__dot--blue" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Détection IRM</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+            </button>
+          </div>
+          <span class="hero__hint mono mono--dim">
+            GLISSEZ&nbsp;POUR&nbsp;EXPLORER&nbsp;·&nbsp;⌘+MOLETTE&nbsp;OU&nbsp;BOUTONS&nbsp;POUR&nbsp;ZOOMER
+          </span>
+        </footer>
+      </section>
+
+      <!-- Project: Bot Trading -->
+      <section class="project" id="bot-trading" aria-labelledby="project-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 001</span>
+          <span class="badge">
+            <span class="badge__dot"></span>
+            <span class="mono">DÉPLOYÉ&nbsp;·&nbsp;VERCEL</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="project-title">
+              Signal trading<br />
+              <em>multi-facteurs</em>
+            </h2>
+            <p class="project__desc">
+              Un dashboard d'analyse de marché qui combine indicateurs
+              techniques, flux d'actualités et lecture par LLM pour générer
+              des signaux <strong class="hl-up">buy</strong>&nbsp;/&nbsp;<strong class="hl-down">sell</strong>
+              avec score de confiance sur n'importe quel ticker.
+              <span class="project__desc-soft">
+                Backend Python&nbsp;+&nbsp;FastAPI pour le calcul des signaux
+                (RSI&nbsp;14, MM&nbsp;50&nbsp;jours, momentum, volume), front React/TypeScript
+                pour la visualisation chandelier, OpenRouter&nbsp;/&nbsp;Claude pour
+                l'analyse des headlines Google&nbsp;News.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Indicateurs</dt>
+                <dd>RSI&nbsp;·&nbsp;MM50&nbsp;·&nbsp;Volume</dd>
+              </div>
+              <div>
+                <dt>Données</dt>
+                <dd>Yahoo&nbsp;Finance</dd>
+              </div>
+              <div>
+                <dt>Trackers</dt>
+                <dd>SXR8&nbsp;·&nbsp;IS3N&nbsp;·&nbsp;EXSA</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;Live</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Vite</li>
+              <li>FastAPI</li>
+              <li>Python</li>
+              <li>Yahoo&nbsp;Finance</li>
+              <li>Google&nbsp;News</li>
+              <li>OpenRouter</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--primary" href="https://bot-trading-beta.vercel.app" target="_blank" rel="noopener">
+                <span class="cta__label">Voir le site</span>
+                <span class="cta__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a class="cta cta--ghost" href="https://github.com/jrj37/bot_trading" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart" aria-label="Aperçu du signal">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">SXR8.DE&nbsp;·&nbsp;S&amp;P&nbsp;500</div>
+                <div class="chart__price">
+                  <span id="chart-price">541.20</span>
+                  <span class="chart__unit mono">€</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;+1.84%</div>
+                <div class="mono mono--dim">D-1</div>
+              </div>
+            </header>
+
+            <div class="chart__signal">
+              <span class="signal-pill signal-pill--buy">
+                <span class="signal-pill__dot"></span>
+                <span class="mono">BUY</span>
+                <span class="signal-pill__bar"><span class="signal-pill__fill" style="--w: 78%"></span></span>
+                <span class="mono signal-pill__pct">78%</span>
+              </span>
+              <span class="mono mono--dim chart__signal-label">CONFIANCE&nbsp;·&nbsp;RSI&nbsp;+&nbsp;MM50&nbsp;+&nbsp;NEWS</span>
+            </div>
+
+            <svg
+              class="chart__svg"
+              id="equity-curve"
+              viewBox="0 0 600 220"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="curve-fill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#d14836" stop-opacity="0.28" />
+                  <stop offset="100%" stop-color="#2779a7" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="curve-stroke" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#2779a7" />
+                  <stop offset="100%" stop-color="#d14836" />
+                </linearGradient>
+                <pattern id="chart-grid" width="60" height="44" patternUnits="userSpaceOnUse">
+                  <path d="M60 0H0V44" fill="none" stroke="var(--border)" stroke-width="0.5" />
+                </pattern>
+              </defs>
+              <rect width="600" height="220" fill="url(#chart-grid)" />
+              <path id="curve-area" fill="url(#curve-fill)" d="" />
+              <path id="curve-ma" fill="none" stroke="var(--accent-2-soft)" stroke-width="1"
+                    stroke-dasharray="3 4" opacity="0.6" d="" />
+              <path id="curve-line" fill="none" stroke="url(#curve-stroke)" stroke-width="1.75"
+                    stroke-linecap="round" stroke-linejoin="round" d="" />
+              <circle id="curve-dot" r="4" fill="#d14836" cx="0" cy="0" />
+            </svg>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">RSI&nbsp;14</div>
+                <div class="chart__stat-value">62.4</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">MM&nbsp;50</div>
+                <div class="chart__stat-value">528.7</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">VOLUME</div>
+                <div class="chart__stat-value up">+18%</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">52W&nbsp;RANGE</div>
+                <div class="chart__stat-value">412&nbsp;–&nbsp;549</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Project: Journal de sport (iOS) -->
+      <section class="project" id="journal-sport" aria-labelledby="sport-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 002</span>
+          <span class="badge badge--green">
+            <span class="badge__dot"></span>
+            <span class="mono">iOS&nbsp;·&nbsp;SWIFTUI</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="sport-title">
+              Journal de<br />
+              <em>musculation</em>
+            </h2>
+            <p class="project__desc">
+              Une app iOS native pour traquer chaque <strong class="hl-up">séance</strong>,
+              chaque série et chaque charge&nbsp;— et voir la progression réelle sur la durée
+              plutôt que de l'imaginer.
+              <span class="project__desc-soft">
+                SwiftUI pour l'interface, un store observable pour la persistance locale,
+                Swift&nbsp;Charts pour la courbe de force par exercice. Build et déploiement
+                reproductibles via XcodeGen + script shell qui boote le simulateur en une commande.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Plateforme</dt>
+                <dd>iOS&nbsp;17+</dd>
+              </div>
+              <div>
+                <dt>Langage</dt>
+                <dd>Swift&nbsp;5.9</dd>
+              </div>
+              <div>
+                <dt>UI</dt>
+                <dd>SwiftUI</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;Actif</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>Swift</li>
+              <li>SwiftUI</li>
+              <li>Swift&nbsp;Charts</li>
+              <li>XcodeGen</li>
+              <li>iOS&nbsp;17</li>
+              <li>Xcode&nbsp;15</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--ghost" href="https://github.com/jrj37/journal_de_sport" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart project__chart--sport" aria-label="Aperçu progression force">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">DÉVELOPPÉ COUCHÉ&nbsp;·&nbsp;12 SÉANCES</div>
+                <div class="chart__price">
+                  <span>82.5</span>
+                  <span class="chart__unit mono">kg</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;+7.5&nbsp;kg</div>
+                <div class="mono mono--dim">8&nbsp;SEM</div>
+              </div>
+            </header>
+
+            <div class="chart__signal">
+              <span class="signal-pill signal-pill--buy">
+                <span class="signal-pill__dot"></span>
+                <span class="mono">PR</span>
+                <span class="signal-pill__bar"><span class="signal-pill__fill" style="--w: 92%"></span></span>
+                <span class="mono signal-pill__pct">+10%</span>
+              </span>
+              <span class="mono mono--dim chart__signal-label">PROGRESSION&nbsp;·&nbsp;8&nbsp;SEMAINES</span>
+            </div>
+
+            <svg class="chart__svg" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="sport-fill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#5dd3a1" stop-opacity="0.28" />
+                  <stop offset="100%" stop-color="#2779a7" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="sport-stroke" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#2779a7" />
+                  <stop offset="100%" stop-color="#5dd3a1" />
+                </linearGradient>
+                <pattern id="sport-grid" width="60" height="44" patternUnits="userSpaceOnUse">
+                  <path d="M60 0H0V44" fill="none" stroke="var(--border)" stroke-width="0.5" />
+                </pattern>
+              </defs>
+              <rect width="600" height="220" fill="url(#sport-grid)" />
+              <path fill="url(#sport-fill)"
+                    d="M0,180 C80,172 130,160 200,140 C260,125 310,128 380,108 C450,90 510,75 600,52 L600,220 L0,220 Z" />
+              <path fill="none" stroke="url(#sport-stroke)" stroke-width="1.75"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    d="M0,180 C80,172 130,160 200,140 C260,125 310,128 380,108 C450,90 510,75 600,52" />
+              <circle r="4" fill="#5dd3a1" cx="600" cy="52" />
+            </svg>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">SÉANCES</div>
+                <div class="chart__stat-value">86</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">PR</div>
+                <div class="chart__stat-value">82.5&nbsp;kg</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">VOLUME&nbsp;7J</div>
+                <div class="chart__stat-value up">+8%</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">EXOS</div>
+                <div class="chart__stat-value">24</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Project: JRscan — Brain tumor detection -->
+      <section class="project" id="tumor-detection" aria-labelledby="tumor-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 003</span>
+          <span class="badge badge--cobalt">
+            <span class="badge__dot"></span>
+            <span class="mono">ML&nbsp;·&nbsp;VISION TRANSFORMER</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="tumor-title">
+              Détection<br />
+              <em>de tumeurs</em>
+            </h2>
+            <p class="project__desc">
+              Classification d'IRM cérébrales par un Vision&nbsp;Transformer fine-tuné&nbsp;—
+              quatre classes (<strong class="hl-down">gliome</strong>,
+              <strong class="hl-down">méningiome</strong>, <strong class="hl-down">adénome</strong>,
+              ou <strong class="hl-up">sain</strong>) avec score de confiance par prédiction.
+              <span class="project__desc-soft">
+                Backend FastAPI servant un modèle PyTorch (ViT-Base 16×16) tracké via MLflow,
+                configuration Hydra, frontend Next.js&nbsp;+&nbsp;Shadcn pour l'upload et la
+                visualisation. Outil éducatif&nbsp;— pas un dispositif médical.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Modèle</dt>
+                <dd>ViT-Base&nbsp;16×16</dd>
+              </div>
+              <div>
+                <dt>Classes</dt>
+                <dd>4&nbsp;·&nbsp;IRM</dd>
+              </div>
+              <div>
+                <dt>Stack ML</dt>
+                <dd>PyTorch&nbsp;·&nbsp;MLflow</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;En&nbsp;dev</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>PyTorch</li>
+              <li>Transformers</li>
+              <li>FastAPI</li>
+              <li>MLflow</li>
+              <li>Hydra</li>
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>Shadcn</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--ghost" href="https://github.com/jrj37/detection-de-tumeurs-au-cerveau" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart project__chart--tumor" aria-label="Aperçu classification IRM">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">SCAN&nbsp;#042&nbsp;·&nbsp;IRM AXIAL</div>
+                <div class="chart__price">
+                  <span class="chart__price--text">Méningiome</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;94.2%</div>
+                <div class="mono mono--dim">CONFIANCE</div>
+              </div>
+            </header>
+
+            <ul class="prob-list" aria-label="Probabilités par classe">
+              <li class="prob-item is-top">
+                <span class="mono prob-item__label">Méningiome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 94%"></span></span>
+                <span class="mono prob-item__pct">94.2%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Gliome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 4%"></span></span>
+                <span class="mono prob-item__pct">3.8%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Adénome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 2%"></span></span>
+                <span class="mono prob-item__pct">1.5%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Sain</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 1%"></span></span>
+                <span class="mono prob-item__pct">0.5%</span>
+              </li>
+            </ul>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">ACCURACY</div>
+                <div class="chart__stat-value">96.4%</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">CLASSES</div>
+                <div class="chart__stat-value">4</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">PARAMS</div>
+                <div class="chart__stat-value">86&nbsp;M</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">EPOCH</div>
+                <div class="chart__stat-value">12</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Parcours -->
+      <section class="resume" id="resume" aria-labelledby="resume-title">
+        <header class="section__header">
+          <span class="mono mono--dim">// MODULE 002</span>
+          <h2 id="resume-title" class="section__title">Parcours</h2>
+        </header>
+
+        <div class="resume__group">
+          <header class="resume__group-head">
+            <span class="mono mono--dim">// EXPÉRIENCES</span>
+          </header>
+
+          <ol class="resume__list">
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">2025&nbsp;— EN COURS</span>
+                <span class="resume__loc mono mono--dim">LUXEMBOURG&nbsp;·&nbsp;FREELANCE</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">AI engineer</h3>
+                  <span class="resume__company mono">DIBSTEUR</span>
+                </header>
+                <p class="resume__desc">
+                  IA multivariée prédisant le potentiel financier des artistes — outil
+                  stratégique d'aide à la décision pour sécuriser et rentabiliser les
+                  nouvelles signatures. Infrastructure cloud AWS&nbsp;+&nbsp;PostgreSQL&nbsp;RDS,
+                  app TypeScript pour les stats et le classement des artistes.
+                </p>
+                <ul class="resume__kpi">
+                  <li><strong class="hl-up">AUTO</strong>Automatisation de la création des contrats&nbsp;— un LLM analyse les échanges d'e-mails entrants et génère les drafts.</li>
+                </ul>
+                <ul class="resume__tech">
+                  <li>AWS</li>
+                  <li>PostgreSQL</li>
+                  <li>Docker</li>
+                  <li>OpenRouter</li>
+                  <li>ElevenLabs</li>
+                  <li>MCP&nbsp;server</li>
+                  <li>TypeScript</li>
+                  <li>Cloudflare</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">02/2025&nbsp;— 08/2025</span>
+                <span class="resume__loc mono mono--dim">VÉLIZY&nbsp;·&nbsp;STAGE</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">AI&nbsp;/&nbsp;ML engineer</h3>
+                  <span class="resume__company mono">THALES&nbsp;AVS</span>
+                </header>
+                <p class="resume__desc">
+                  Exploitation des données de tests de performances cathodes&nbsp;: analyse PCA
+                  &amp;&nbsp;T-SNE, pipeline CI/CD, évaluation par K-fold, prédiction temporelle
+                  via Transformer&nbsp;+&nbsp;XGBoost et tuning d'hyperparamètres.
+                </p>
+                <ul class="resume__kpi">
+                  <li><strong class="hl-up">−80%</strong>de temps sur les tests.</li>
+                  <li><strong class="hl-up">+20%</strong>de rendement.</li>
+                </ul>
+                <ul class="resume__tech">
+                  <li>PyTorch</li>
+                  <li>XGBoost</li>
+                  <li>MLflow</li>
+                  <li>Docker</li>
+                  <li>uv</li>
+                  <li>Streamlit</li>
+                  <li>pytest</li>
+                  <li>CI/CD</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">06/2024&nbsp;— 08/2024</span>
+                <span class="resume__loc mono mono--dim">MONTRÉAL&nbsp;·&nbsp;STAGE</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Computer vision engineer</h3>
+                  <span class="resume__company mono">DRONE&nbsp;DES&nbsp;CHAMPS</span>
+                </header>
+                <p class="resume__desc">
+                  Amélioration d'un ResNet et d'un U-Net pour la détection de laitues en
+                  champs&nbsp;: optimisation du pipeline data, génération de labels par contours
+                  de masques. Détection de jauges à boue avec Mask&nbsp;R-CNN + lecture OCR de
+                  la graduation.
+                </p>
+                <ul class="resume__tech">
+                  <li>PyTorch</li>
+                  <li>OpenCV</li>
+                  <li>ResNet</li>
+                  <li>U-Net</li>
+                  <li>Mask&nbsp;R-CNN</li>
+                  <li>EasyOCR</li>
+                  <li>GDAL</li>
+                  <li>QGIS</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">06/2023&nbsp;— 07/2023</span>
+                <span class="resume__loc mono mono--dim">TOURS&nbsp;·&nbsp;STAGE</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Java NLP developer</h3>
+                  <span class="resume__company mono">NORSYS&nbsp;B&nbsp;CORP</span>
+                </header>
+                <p class="resume__desc">
+                  Conception d'un programme d'anonymisation de données à partir de fichiers
+                  XML — premier contact industriel avec le NLP et les pipelines Java.
+                </p>
+                <ul class="resume__tech">
+                  <li>Java</li>
+                  <li>Maven</li>
+                  <li>XML</li>
+                  <li>SQL</li>
+                  <li>Linux</li>
+                </ul>
+              </article>
+            </li>
+          </ol>
+        </div>
+
+        <div class="resume__group">
+          <header class="resume__group-head">
+            <span class="mono mono--dim">// FORMATIONS</span>
+          </header>
+
+          <ol class="resume__list">
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">2022&nbsp;— 2025</span>
+                <span class="resume__loc mono mono--dim">STRASBOURG</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Diplôme d'ingénieur&nbsp;— Science des données &amp; IA</h3>
+                  <div class="resume__org">
+                    <img class="resume__logo resume__logo--tps" src="/logos/tps.png" alt="" aria-hidden="true" />
+                    <span class="resume__company mono">TÉLÉCOM&nbsp;PHYSIQUE&nbsp;STRASBOURG</span>
+                  </div>
+                </header>
+                <p class="resume__desc">
+                  Deep learning, machine learning, computer vision, reinforcement learning,
+                  MLOps, LLM, NLP, Docker, Git, MongoDB.
+                </p>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">2023&nbsp;— 2025</span>
+                <span class="resume__loc mono mono--dim">STRASBOURG</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Master&nbsp;— Science des données &amp; systèmes complexes</h3>
+                  <div class="resume__org">
+                    <img class="resume__logo resume__logo--unistra" src="/logos/unistra.png" alt="" aria-hidden="true" />
+                    <span class="resume__company mono">UNIVERSITÉ&nbsp;DE&nbsp;STRASBOURG</span>
+                  </div>
+                </header>
+                <p class="resume__desc">
+                  Bioinformatique, data warehousing, supervised &amp; unsupervised learning.
+                </p>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">2020&nbsp;— 2022</span>
+                <span class="resume__loc mono mono--dim">TOURS</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Classe préparatoire PCSI&nbsp;/&nbsp;PC</h3>
+                  <span class="resume__company mono">LYCÉE&nbsp;DESCARTES</span>
+                </header>
+                <p class="resume__desc">
+                  Physique, chimie et mathématiques&nbsp;— deux ans de fondamentaux scientifiques.
+                </p>
+              </article>
+            </li>
+
+            <li class="resume__entry">
+              <div class="resume__period">
+                <span class="resume__date mono">2017&nbsp;— 2020</span>
+                <span class="resume__loc mono mono--dim">CHÂTEAUROUX</span>
+              </div>
+              <article class="resume__body">
+                <header class="resume__head">
+                  <h3 class="resume__role">Baccalauréat scientifique&nbsp;— Mention très bien</h3>
+                  <span class="resume__company mono">LYCÉE&nbsp;JEAN&nbsp;GIRAUDOUX</span>
+                </header>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="skills" aria-labelledby="skills-title">
+        <header class="section__header">
+          <span class="mono mono--dim">// MODULE 003</span>
+          <h2 id="skills-title" class="section__title">Compétences</h2>
+        </header>
+
+        <div class="skills__grid">
+          <article class="skill">
+            <div class="skill__head">
+              <span class="mono mono--dim">01</span>
+              <h3 class="skill__title">Apprentissage profond</h3>
+            </div>
+            <ul class="skill__items">
+              <li>PyTorch</li>
+              <li>Transformers&nbsp;/&nbsp;ViT</li>
+              <li>ResNet&nbsp;/&nbsp;U-Net</li>
+            </ul>
+          </article>
+
+          <article class="skill">
+            <div class="skill__head">
+              <span class="mono mono--dim">02</span>
+              <h3 class="skill__title">Machine learning</h3>
+            </div>
+            <ul class="skill__items">
+              <li>XGBoost</li>
+              <li>Scikit-Learn</li>
+              <li>PCA&nbsp;/&nbsp;T-SNE</li>
+            </ul>
+          </article>
+
+          <article class="skill">
+            <div class="skill__head">
+              <span class="mono mono--dim">03</span>
+              <h3 class="skill__title">MLOps &amp; cloud</h3>
+            </div>
+            <ul class="skill__items">
+              <li>Docker&nbsp;/&nbsp;MLflow</li>
+              <li>AWS&nbsp;/&nbsp;RDS</li>
+              <li>CI/CD&nbsp;·&nbsp;pytest</li>
+            </ul>
+          </article>
+
+          <article class="skill">
+            <div class="skill__head">
+              <span class="mono mono--dim">04</span>
+              <h3 class="skill__title">LLM &amp; agents</h3>
+            </div>
+            <ul class="skill__items">
+              <li>OpenRouter&nbsp;/&nbsp;Claude</li>
+              <li>MCP&nbsp;server</li>
+              <li>ElevenLabs</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <footer class="contact" aria-labelledby="contact-title">
+        <div class="contact__inner">
+          <div class="contact__mark mono">// END&nbsp;OF&nbsp;FEED</div>
+          <h2 id="contact-title" class="contact__title">
+            On <em>parle</em>&nbsp;?
+          </h2>
+          <a class="contact__email" href="mailto:jean.raphael2810@icloud.com">
+            jean.raphael2810@icloud.com
+          </a>
+          <div class="contact__links">
+            <a href="https://github.com/jrj37" target="_blank" rel="noopener">
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/jeanraphaeljulien" target="_blank" rel="noopener">
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="contact__bottom mono">
+            <span>© JRJ37 · MMXXVI</span>
+            <span class="mono--dim">CONSTRUIT EN TYPESCRIPT&nbsp;·&nbsp;DÉPLOYÉ SUR GITHUB PAGES</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
