@@ -34,6 +34,14 @@ const PROJECT_MARKERS: CloudMarker[] = [
     label: 'TUMOR DETECTION',
     href: '#tumor-detection',
   },
+  {
+    // arm 0 inner, r ≈ 0.35 — close to the core, opposite of bot trading
+    pos: { x: -0.12, y: -0.03, z: -0.33 },
+    color: '#8b5cf6',
+    rgb: [139, 92, 246],
+    label: 'COMMAND VOICE',
+    href: '#command-voice',
+  },
 ];
 
 function boot(): void {

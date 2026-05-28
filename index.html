@@ -109,6 +109,16 @@
               <span class="legend-item__label mono">Détection IRM</span>
               <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
             </button>
+            <button
+              type="button"
+              class="legend-item"
+              data-marker-jump="COMMAND VOICE"
+              onclick="document.getElementById('command-voice')?.scrollIntoView({behavior:'smooth'})"
+            >
+              <span class="legend-item__dot legend-item__dot--indigo" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Agent vocal</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+            </button>
           </div>
           <span class="hero__hint mono mono--dim">
             GLISSEZ&nbsp;POUR&nbsp;EXPLORER&nbsp;·&nbsp;⌘+MOLETTE&nbsp;OU&nbsp;BOUTONS&nbsp;POUR&nbsp;ZOOMER
@@ -530,6 +540,161 @@
               </div>
               <div>
                 <div class="mono mono--dim">EPOCH</div>
+                <div class="chart__stat-value">12</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Project: Command Voice Robot -->
+      <section class="project" id="command-voice" aria-labelledby="voice-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 004</span>
+          <span class="badge badge--indigo">
+            <span class="badge__dot"></span>
+            <span class="mono">AGENT&nbsp;IA&nbsp;·&nbsp;BFS&nbsp;+&nbsp;VOIX</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="voice-title">
+              Agent vocal<br />
+              <em>autonome</em>
+            </h2>
+            <p class="project__desc">
+              Un robot téléguidé à la voix qui explore une grille avec une
+              <strong class="hl-indigo">vision limitée</strong>&nbsp;— l'agent
+              planifie son trajet en <strong class="hl-indigo">BFS</strong>
+              pendant qu'on lui glisse des indices à l'oreille
+              («&nbsp;<em>près de la fontaine</em>&nbsp;»).
+              <span class="project__desc-soft">
+                Backend Python&nbsp;+&nbsp;FastAPI streamé en WebSocket, reconnaissance
+                vocale Whisper local (français, sans clé&nbsp;API), parser fuzzy
+                des commandes. Frontend React&nbsp;+&nbsp;Pixi.js avec capture micro
+                AudioWorklet et rendu Canvas. L'agent fait du pathfinding sur
+                la portion connue de la carte et replanifie à chaque nouveau
+                tile dévoilé.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Agent</dt>
+                <dd>BFS&nbsp;·&nbsp;FOV</dd>
+              </div>
+              <div>
+                <dt>Voix</dt>
+                <dd>Whisper&nbsp;local</dd>
+              </div>
+              <div>
+                <dt>Transport</dt>
+                <dd>WebSocket&nbsp;PCM</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;Open&nbsp;source</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>Whisper</li>
+              <li>WebSocket</li>
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Pixi.js</li>
+              <li>Vite</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--ghost" href="https://github.com/jrj37/command_voice_robot" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart project__chart--voice" aria-label="Commandes vocales reconnues">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">VOIX&nbsp;→&nbsp;ACTION</div>
+                <div class="chart__price">
+                  <span class="chart__price--text">«&nbsp;<em>cherche les clés</em>&nbsp;»</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;LIVE</div>
+                <div class="mono mono--dim">WHISPER&nbsp;·&nbsp;FR</div>
+              </div>
+            </header>
+
+            <div class="chart__signal">
+              <span class="signal-pill signal-pill--indigo">
+                <span class="signal-pill__dot"></span>
+                <span class="mono">MIC</span>
+                <span class="voice-wave" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </span>
+                <span class="mono signal-pill__pct">−24&nbsp;dB</span>
+              </span>
+              <span class="mono mono--dim chart__signal-label">ÉCOUTE&nbsp;EN&nbsp;COURS</span>
+            </div>
+
+            <ul class="voice-log" aria-label="Mapping voix vers actions">
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">avance</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">ROBOT.forward()</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">ramasse</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">ROBOT.grab()</span>
+              </li>
+              <li class="voice-log__item is-active">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">cherche les clés</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">AGENT.start(keys)</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">près de la fontaine</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">AGENT.hint(fontaine)</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">stop</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">RESET</span>
+              </li>
+            </ul>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">STT</div>
+                <div class="chart__stat-value">Whisper</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">VOIX</div>
+                <div class="chart__stat-value">FR</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">DÉLAI</div>
+                <div class="chart__stat-value up">180&nbsp;ms</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">CMDS</div>
                 <div class="chart__stat-value">12</div>
               </div>
             </footer>
