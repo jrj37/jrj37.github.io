@@ -253,7 +253,15 @@ main, .ticker { position: relative; z-index: 2; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fg-soft);
-  padding: 0 2.5rem;
+  /* IMPORTANT : aucun padding ici. L'animation translateX(-25%) suppose
+     que la piste est strictement périodique sur 4 copies — la moindre
+     padding casse le seamless loop et fait apparaître un "trou" qui
+     glisse à chaque cycle (très visible sur iOS où le rafraîchissement
+     est lent). Le fade des bords est entièrement géré par .ticker::before. */
+  padding: 0;
+  /* Hint GPU : évite les sauts sub-pixel sur Safari mobile. */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .ticker__item {
@@ -1750,7 +1758,6 @@ section {
   }
   .ticker__track {
     gap: 3rem;
-    padding: 0 1.5rem;
   }
 }
 

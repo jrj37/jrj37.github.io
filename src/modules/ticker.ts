@@ -36,8 +36,9 @@ function renderLogo(logo: Logo): string {
         class="ticker__logo ticker__logo--${logo.treatment} ticker__logo--${slug}"
         src="${logo.src}"
         alt="${logo.name}"
-        loading="lazy"
+        loading="eager"
         decoding="async"
+        draggable="false"
       />
     </span>
     <span class="ticker__sep" aria-hidden="true">◇</span>
