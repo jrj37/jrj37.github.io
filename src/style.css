@@ -459,6 +459,11 @@ section {
   padding: clamp(20px, 2.5vw, 40px) var(--pad-x);
   display: grid;
   grid-template-rows: auto 1fr auto;
+  /* minmax(0, 1fr) verrouille la colonne implicite à l'espace dispo.
+     Sans ça, la taille intrinsèque du canvas WebGL (sa résolution physique
+     × DPR, soit ~1200 px sur un iPhone 3x) faisait grandir la colonne et
+     poussait galaxie + texte du lead au-delà du viewport. */
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(12px, 2vw, 28px);
   align-items: center;
 }
@@ -718,6 +723,10 @@ section {
 .cloud__canvas {
   width: 100%;
   height: 100%;
+  /* Cap explicite : le canvas a une taille intrinsèque (canvas.width × DPR)
+     qui peut peser sur le sizing du parent en flex/grid. max-width:100% évite
+     toute tentation du moteur de layout d'étendre au-delà du conteneur. */
+  max-width: 100%;
   display: block;
   cursor: grab;
   touch-action: pan-y;
