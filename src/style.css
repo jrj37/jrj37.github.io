@@ -79,12 +79,18 @@ html {
   font-variation-settings: 'opsz' 14, 'SOFT' 50;
   line-height: 1.5;
   scroll-behavior: smooth;
+  /* iOS Safari : empêche l'auto-zoom du texte en rotation paysage. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   position: relative;
+  /* Supprime le flash gris au tap sur iOS/Android. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
@@ -421,6 +427,7 @@ section {
 
 .hero {
   min-height: calc(100vh - 80px);
+  min-height: calc(100dvh - 80px);
   padding: clamp(20px, 2.5vw, 40px) var(--pad-x);
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -1668,6 +1675,173 @@ section {
   height: 1px;
   background: linear-gradient(90deg, var(--accent-2), var(--accent));
   box-shadow: 0 0 6px var(--accent-2-glow-strong);
+}
+
+/* ============================================================
+   Mobile & touch — iOS Safari, Chrome iOS, Chrome Android
+   ============================================================
+
+   Stratégie :
+     • Échelle viewport unitaire en `dvh` pour absorber la barre d'URL
+       qui se rétracte sur mobile Safari/Chrome.
+     • safe-area-inset autour des éléments fixes / footer pour éviter
+       que l'encoche ou le home indicator ne masque le contenu.
+     • Désactivation des effets :hover sur écrans tactiles, qui restent
+       collés après un tap et donnent une impression de bug.
+     • Tassage des grilles internes (specs, project header, chart header)
+       sous 480 px où le 2 colonnes commence à manquer d'air.
+*/
+
+/* Notch / safe area — applique des marges sécurisées en paysage sur
+   les iPhones à encoche. En portrait les insets sont à 0, donc neutre. */
+@supports (padding: max(0px)) {
+  section,
+  .contact {
+    padding-left: max(var(--pad-x), env(safe-area-inset-left));
+    padding-right: max(var(--pad-x), env(safe-area-inset-right));
+  }
+  .contact {
+    padding-bottom: max(clamp(40px, 6vw, 60px), env(safe-area-inset-bottom));
+  }
+  .corner-clock {
+    left: max(var(--pad-x), env(safe-area-inset-left));
+  }
+}
+
+/* Touch devices : on retire les états :hover qui restent collés après
+   un tap et le translateY qui produit un wobble visuel sur tactile. */
+@media (hover: none) {
+  .tag,
+  .legend-item,
+  .legend-item:hover,
+  .project__tech li,
+  .project__tech li:hover,
+  .resume__tech li,
+  .resume__tech li:hover,
+  .resume__entry:hover,
+  .skill:hover,
+  .cta--primary:hover,
+  .cta--ghost:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .legend-item:hover { border-color: var(--border-strong); }
+  .legend-item:hover::before { opacity: 0; }
+  .ticker:hover .ticker__track { animation-play-state: running; }
+  .resume__entry:hover { background: transparent; }
+  .skill:hover { background: var(--bg); }
+  .skill:hover::before { opacity: 0; }
+  /* Curseur "grab" inutile sur tactile. */
+  .cloud__canvas { cursor: default; }
+}
+
+/* Tablette portrait & mobile large — tasse les paddings verticaux et
+   réduit la hauteur de la galaxie qui mangeait tout l'écran. */
+@media (max-width: 768px) {
+  section {
+    padding-top: clamp(60px, 12vw, 100px);
+    padding-bottom: clamp(60px, 12vw, 100px);
+  }
+  .cloud {
+    height: clamp(320px, 52dvh, 540px);
+  }
+  .cloud-stage {
+    padding: clamp(8px, 2vw, 20px);
+  }
+  .ticker__track {
+    gap: 3rem;
+    padding: 0 1.5rem;
+  }
+}
+
+/* Mobile portrait — l'essentiel des ajustements de lisibilité tient ici. */
+@media (max-width: 520px) {
+  /* Project header — espace plus serré, autorise le wrap. */
+  .project__header {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 18px;
+    margin-bottom: 32px;
+  }
+
+  /* Chart header : prix au-dessus, delta en-dessous — moins étriqué
+     que côte à côte sur 360 px. */
+  .chart__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .chart__delta { text-align: left; }
+
+  /* Une seule colonne pour les specs : le 2 colonnes devenait illisible
+     avec les bordures qui mangeaient la largeur utile. */
+  .project__specs { grid-template-columns: 1fr; }
+  .project__specs > div:nth-child(odd) {
+    padding-right: 0;
+    border-right: none;
+  }
+  .project__specs > div:nth-child(even) { padding-left: 0; }
+  .project__specs > div:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .project__specs > div:last-child { border-bottom: none; }
+
+  /* CTAs pleine largeur — bien plus simples à taper. */
+  .project__ctas { flex-direction: column; align-items: stretch; }
+  .project__ctas .cta { justify-content: center; }
+
+  /* Chart card : marges intérieures plus modestes pour récupérer ~16 px
+     de largeur utile sur petit écran. */
+  .project__chart { padding: 16px; gap: 14px; }
+
+  /* Pill signal : la barre 80 px + le label faisaient déborder. On
+     compacte la barre et on laisse le label se replier en dessous. */
+  .signal-pill { flex-wrap: wrap; gap: 8px; }
+  .signal-pill__bar { width: 56px; }
+
+  /* Légende projets — empilée verticalement pour des cibles tactiles
+     généreuses, sinon les trois dots se touchent presque. */
+  .hero__legend {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .legend-item { justify-content: space-between; padding: 11px 14px; }
+
+  /* Contrôles galaxie : cibles tactiles plus grandes (44px Apple HIG). */
+  .cloud__btn { width: 40px; height: 40px; font-size: 18px; }
+  .cloud__controls { bottom: 12px; right: 14px; }
+
+  /* Le tooltip de la galaxie est inutile au touch (pas de hover) — on
+     le réduit à zéro pour qu'il ne reste pas affiché après un tap. */
+  .cloud__tooltip { display: none; }
+
+  /* Resume : retire le logo qui mange de la place, on garde le nom. */
+  .resume__logo { display: none; }
+  .resume__head { gap: 8px; }
+  .resume__role { font-size: clamp(18px, 5.5vw, 22px); }
+
+  /* Contact : les deux blocs du bas s'alignent verticalement, jamais
+     côte à côte sur 360 px. */
+  .contact__bottom { flex-direction: column; gap: 8px; }
+  .contact__links { gap: 18px; }
+
+  /* Ticker : descend la densité, sinon le défilement saturé fait mal aux yeux. */
+  .ticker { height: 56px; }
+  .ticker__track { gap: 2.5rem; font-size: 10.5px; }
+  .ticker__logo { height: 24px; }
+  .ticker__logo--norsys { height: 32px; }
+
+  /* Horloge coin : juste l'heure, sans label de fuseau (déjà géré à 640px
+     mais on resserre encore la taille). */
+  .corner-clock { gap: 8px; top: calc(56px + 14px); }
+  .corner-clock__time { font-size: 12px; letter-spacing: 0.16em; }
+}
+
+/* Très petit (≤ 360 px — iPhone SE et anciens Android) — ultime tassage. */
+@media (max-width: 360px) {
+  :root { --pad-x: 16px; }
+  .hero__name { font-size: 26px; }
+  .project__title { font-size: 40px; }
+  .contact__title { font-size: 56px; }
 }
 
 /* ============================================================

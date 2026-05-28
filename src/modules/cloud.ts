@@ -835,6 +835,18 @@ export function initCloud(canvas: HTMLCanvasElement, markers: CloudMarker[]): vo
     }
   });
 
+  // touch-action: pan-y laisse le navigateur prendre la main quand il
+  // détecte un scroll vertical — un pointercancel arrive alors sans
+  // pointerup. Sans ça, isDragging restait collé à true jusqu'au tap
+  // suivant, et la galaxie panait pendant le scroll de la page.
+  canvas.addEventListener('pointercancel', (e) => {
+    if (isDragging) {
+      isDragging = false;
+      try { canvas.releasePointerCapture(e.pointerId); } catch { /* déjà relâché */ }
+      canvas.style.cursor = '';
+    }
+  });
+
   canvas.addEventListener('click', (e) => {
     if (convergeStartTime !== null) return;
     const { x, y } = toCanvasCoords(e.clientX, e.clientY);
