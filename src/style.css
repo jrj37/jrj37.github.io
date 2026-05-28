@@ -1870,6 +1870,13 @@ section {
      mais on resserre encore la taille). */
   .corner-clock { gap: 8px; top: calc(56px + 14px); }
   .corner-clock__time { font-size: 12px; letter-spacing: 0.16em; }
+
+  /* L'horloge est en position absolute à gauche (~20-130px) et les badges
+     "AI ENGINEER / DATA SCIENTIST" sont centrés horizontalement — sur un
+     viewport de 393px les deux occupent la même bande. On pousse le hero
+     vers le bas pour que les badges passent SOUS l'horloge au lieu de la
+     chevaucher. */
+  .hero { padding-top: clamp(44px, 11vw, 64px); }
 }
 
 /* Très petit (≤ 360 px — iPhone SE et anciens Android) — ultime tassage. */
