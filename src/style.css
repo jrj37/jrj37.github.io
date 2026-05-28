@@ -69,6 +69,12 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--fg);
+  /* Verrouille la largeur au viewport visible. Sans ça, un descendant
+     très large (la piste du ticker) pousse le body à grandir au-delà
+     du viewport sur iOS Safari, et tout le contenu apparaît tassé à
+     gauche avec une bande noire à droite. */
+  width: 100%;
+  max-width: 100vw;
 }
 
 html {
@@ -82,6 +88,9 @@ html {
   /* iOS Safari : empêche l'auto-zoom du texte en rotation paysage. */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Filet anti-overflow horizontal — overflow:hidden sur body seul ne
+     suffit pas toujours sur iOS quand un flex child explose la largeur. */
+  overflow-x: hidden;
 }
 
 body {
@@ -220,10 +229,16 @@ main, .ticker { position: relative; z-index: 2; }
   position: relative;
   z-index: 50;
   height: 64px;
+  width: 100%;
+  /* Verrou anti-débordement : sans contrainte explicite, le flex child
+     ultra-large (.ticker__track) faisait grandir .ticker au-delà du
+     viewport sur iOS, ce qui poussait tout le body vers la droite. */
+  max-width: 100vw;
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -259,6 +274,11 @@ main, .ticker { position: relative; z-index: 2; }
      glisse à chaque cycle (très visible sur iOS où le rafraîchissement
      est lent). Le fade des bords est entièrement géré par .ticker::before. */
   padding: 0;
+  /* min-width:0 autorise le flex child à passer sous sa min-content size :
+     sans ça, le navigateur (notamment iOS Safari) calcule la largeur du
+     conteneur parent en incluant la piste entière (~3000px), ce qui faisait
+     déborder le body en dépit de overflow:hidden. */
+  min-width: 0;
   /* Hint GPU : évite les sauts sub-pixel sur Safari mobile. */
   will-change: transform;
   transform: translateZ(0);
