@@ -27,10 +27,14 @@
     <div class="grain" aria-hidden="true"></div>
     <canvas class="cursor-fx" id="cursor-fx" aria-hidden="true"></canvas>
 
-    <!-- Ticker tape -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track" id="ticker-track"></div>
-    </div>
+    <!-- Tab navigation — pilule flottante, pilotée par le routeur à hash -->
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a class="nav__link" data-nav="about" href="#about">À propos</a>
+      <a class="nav__link" data-nav="cv" href="#cv">CV</a>
+      <a class="nav__link" data-nav="projets" href="#projets">Projets</a>
+      <a class="nav__link" data-nav="repos" href="#repos">Repos</a>
+      <a class="nav__link" data-nav="blog" href="#blog">Blog</a>
+    </nav>
 
     <!-- Floating clock — top left corner -->
     <div class="corner-clock" aria-label="Heure locale à Paris">
@@ -41,24 +45,92 @@
     </div>
 
     <main>
+      <!-- ===================== VIEW: À PROPOS ===================== -->
+      <div class="view is-active" id="view-about" data-view="about">
       <!-- Hero -->
       <section class="hero">
-        <header class="hero__intro">
-          <div class="hero__meta">
-            <span class="tag tag--accent">AI ENGINEER</span>
-            <span class="tag">DATA SCIENTIST</span>
-          </div>
-
-          <h1 class="hero__name" aria-label="Jean-Raphaël Julien">
-            <span class="hero__line">Jean<span class="hero__dash">‑</span>Raphaël</span>
-            <span class="hero__line hero__line--last">
-              Julien<sup class="hero__star" aria-hidden="true">✦</sup>
+        <!-- À propos — fiche / dossier terminal, au-dessus de la galaxie -->
+        <article class="dossier">
+          <header class="dossier__bar">
+            <span class="dossier__tag mono">// PROFIL&nbsp;·&nbsp;JRJ-2026</span>
+            <span class="dossier__status mono">
+              <span class="dossier__status-dot" aria-hidden="true"></span>
+              Disponible
             </span>
-          </h1>
-        </header>
+          </header>
+
+          <div class="dossier__body">
+            <figure class="dossier__plate">
+              <span class="dossier__photo">
+                <img
+                  src="/portrait.jpg"
+                  width="760"
+                  height="760"
+                  alt="Portrait de Jean-Raphaël Julien"
+                  loading="eager"
+                  decoding="async"
+                />
+              </span>
+              <figcaption class="dossier__plate-cap mono">
+                <span>JRJ&nbsp;·&nbsp;PORTRAIT</span>
+                <span>2026</span>
+              </figcaption>
+            </figure>
+
+            <div class="dossier__id">
+              <h1 class="hero__name" aria-label="Jean-Raphaël Julien">
+                <span class="hero__line">Jean<span class="hero__dash">‑</span>Raphaël</span>
+                <span class="hero__line hero__line--last">
+                  Julien<sup class="hero__star" aria-hidden="true">✦</sup>
+                </span>
+              </h1>
+
+              <dl class="dossier__fields">
+                <div class="dossier__field">
+                  <dt class="mono">Rôle</dt>
+                  <dd>AI Engineer&nbsp;·&nbsp;Data Scientist</dd>
+                </div>
+                <div class="dossier__field">
+                  <dt class="mono">Base</dt>
+                  <dd>Paris&nbsp;·&nbsp;Freelance</dd>
+                </div>
+                <div class="dossier__field">
+                  <dt class="mono">Formation</dt>
+                  <dd>Ingénieur Télécom Physique Strasbourg&nbsp;·&nbsp;M.Sc. Unistra</dd>
+                </div>
+                <div class="dossier__field">
+                  <dt class="mono">Parcours</dt>
+                  <dd>Thales&nbsp;AVS&nbsp;·&nbsp;Drone des Champs&nbsp;·&nbsp;Norsys</dd>
+                </div>
+                <div class="dossier__field">
+                  <dt class="mono">Focus</dt>
+                  <dd>Deep learning&nbsp;·&nbsp;Computer vision&nbsp;·&nbsp;NLP&nbsp;·&nbsp;LLM&nbsp;·&nbsp;MLOps</dd>
+                </div>
+                <div class="dossier__field">
+                  <dt class="mono">Contact</dt>
+                  <dd><a class="dossier__email" href="mailto:jean.raphael2810@icloud.com">jean.raphael2810@icloud.com</a></dd>
+                </div>
+              </dl>
+
+              <p class="dossier__note">
+                Diplômé ingénieur de Télécom&nbsp;Physique&nbsp;Strasbourg et d'un Master en
+                science des données de l'Université&nbsp;de&nbsp;Strasbourg. J'ai mené des projets
+                de vision par ordinateur, de machine learning industriel et de MLOps, de NLP
+                et d'agents&nbsp;LLM&nbsp;: stages chez Thales&nbsp;AVS, Drone&nbsp;des&nbsp;Champs
+                (Montréal) et Norsys, puis AI&nbsp;engineer chez Dibsteur.
+              </p>
+
+              <nav class="dossier__actions" aria-label="Liens">
+                <a class="dossier__cta" href="#cv">Voir le CV <span aria-hidden="true">→</span></a>
+                <a href="https://github.com/jrj37" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+                <a href="https://www.linkedin.com/in/jeanraphaeljulien" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+              </nav>
+            </div>
+          </div>
+        </article>
 
         <div class="cloud-stage">
-          <span class="cloud-stage__caption cloud-stage__caption--br mono mono--dim">
+          <span class="cloud-stage__caption cloud-stage__caption--bl mono mono--dim">
             JRJ37&nbsp;/&nbsp;2026
           </span>
 
@@ -73,57 +145,62 @@
         </div>
 
         <footer class="hero__outro">
-          <p class="hero__lead">
-            Chaque étoile colorée de la galaxie est un projet&nbsp;— <em>glissez</em>
-            pour la faire pivoter, cliquez pour explorer.
-          </p>
-
           <div class="hero__legend">
             <button
               type="button"
               class="legend-item"
               data-marker-jump="BOT TRADING"
-              onclick="document.getElementById('bot-trading')?.scrollIntoView({behavior:'smooth'})"
+              onclick="location.hash='#bot-trading'"
             >
               <span class="legend-item__dot legend-item__dot--red" aria-hidden="true"></span>
               <span class="legend-item__label mono">Bot trading</span>
-              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
             <button
               type="button"
               class="legend-item"
               data-marker-jump="JOURNAL SPORT"
-              onclick="document.getElementById('journal-sport')?.scrollIntoView({behavior:'smooth'})"
+              onclick="location.hash='#journal-sport'"
             >
               <span class="legend-item__dot legend-item__dot--green" aria-hidden="true"></span>
               <span class="legend-item__label mono">Journal sport</span>
-              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
             <button
               type="button"
               class="legend-item"
               data-marker-jump="TUMOR DETECTION"
-              onclick="document.getElementById('tumor-detection')?.scrollIntoView({behavior:'smooth'})"
+              onclick="location.hash='#tumor-detection'"
             >
               <span class="legend-item__dot legend-item__dot--blue" aria-hidden="true"></span>
               <span class="legend-item__label mono">Détection IRM</span>
-              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
             <button
               type="button"
               class="legend-item"
               data-marker-jump="COMMAND VOICE"
-              onclick="document.getElementById('command-voice')?.scrollIntoView({behavior:'smooth'})"
+              onclick="location.hash='#command-voice'"
             >
               <span class="legend-item__dot legend-item__dot--indigo" aria-hidden="true"></span>
               <span class="legend-item__label mono">Agent vocal</span>
-              <span class="legend-item__arrow mono" aria-hidden="true">↓</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
           </div>
           <span class="hero__hint mono mono--dim">
-            GLISSEZ&nbsp;POUR&nbsp;EXPLORER&nbsp;·&nbsp;⌘+MOLETTE&nbsp;OU&nbsp;BOUTONS&nbsp;POUR&nbsp;ZOOMER
+            GLISSEZ&nbsp;POUR&nbsp;PIVOTER&nbsp;·&nbsp;MOLETTE&nbsp;POUR&nbsp;ZOOMER
           </span>
         </footer>
+      </section>
+      </div><!-- /view about -->
+
+      <!-- ===================== VIEW: PROJETS ===================== -->
+      <div class="view" id="view-projets" data-view="projets">
+      <section class="projets-head" aria-labelledby="projets-title">
+        <header class="section__header">
+          <span class="mono mono--dim">// PROJETS</span>
+          <h2 id="projets-title" class="section__title">Projets</h2>
+        </header>
       </section>
 
       <!-- Project: Bot Trading -->
@@ -701,12 +778,25 @@
           </aside>
         </div>
       </section>
+      </div><!-- /view projets -->
 
+      <!-- ===================== VIEW: CV ===================== -->
+      <div class="view" id="view-cv" data-view="cv">
       <!-- Parcours -->
       <section class="resume" id="resume" aria-labelledby="resume-title">
         <header class="section__header">
-          <span class="mono mono--dim">// MODULE 002</span>
+          <span class="mono mono--dim">// CV</span>
           <h2 id="resume-title" class="section__title">Parcours</h2>
+          <div class="cv__actions">
+            <a class="cta cta--primary" href="/cv-jrj.pdf" download="Jean-Raphael_Julien_CV.pdf">
+              <span class="cta__label">Télécharger le CV</span>
+              <span class="cta__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
         </header>
 
         <div class="resume__group">
@@ -718,7 +808,7 @@
             <li class="resume__entry">
               <div class="resume__period">
                 <span class="resume__date mono">2025&nbsp;— EN COURS</span>
-                <span class="resume__loc mono mono--dim">LUXEMBOURG&nbsp;·&nbsp;FREELANCE</span>
+                <span class="resume__loc mono mono--dim">PARIS&nbsp;·&nbsp;FREELANCE</span>
               </div>
               <article class="resume__body">
                 <header class="resume__head">
@@ -914,7 +1004,7 @@
       <!-- Skills -->
       <section class="skills" aria-labelledby="skills-title">
         <header class="section__header">
-          <span class="mono mono--dim">// MODULE 003</span>
+          <span class="mono mono--dim">// COMPÉTENCES</span>
           <h2 id="skills-title" class="section__title">Compétences</h2>
         </header>
 
@@ -968,25 +1058,172 @@
           </article>
         </div>
       </section>
+      </div><!-- /view cv -->
 
-      <!-- Contact -->
-      <footer class="contact" aria-labelledby="contact-title">
-        <div class="contact__inner">
-          <div class="contact__mark mono">// END&nbsp;OF&nbsp;FEED</div>
-          <h2 id="contact-title" class="contact__title">
-            On <em>parle</em>&nbsp;?
-          </h2>
-          <a class="contact__email" href="mailto:jean.raphael2810@icloud.com">
-            jean.raphael2810@icloud.com
+      <!-- ===================== VIEW: REPOS ===================== -->
+      <div class="view" id="view-repos" data-view="repos">
+      <section class="repos" aria-labelledby="repos-title">
+        <header class="section__header">
+          <span class="mono mono--dim">// INDEX DES DÉPÔTS</span>
+          <h2 id="repos-title" class="section__title">Repos</h2>
+        </header>
+
+        <div class="repos__grid">
+          <a class="repo-card" href="https://github.com/jrj37/neuron" target="_blank" rel="noopener" style="--lang:#dea584">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">Rust</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">neuron</span>
+            <span class="repo-card__desc">Réseau de neurones implémenté from scratch.</span>
           </a>
-          <div class="contact__links">
-            <a href="https://github.com/jrj37" target="_blank" rel="noopener">
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-            <a href="https://www.linkedin.com/in/jeanraphaeljulien" target="_blank" rel="noopener">
-              LinkedIn <span aria-hidden="true">↗</span>
-            </a>
-          </div>
+
+          <a class="repo-card" href="https://github.com/jrj37/lecteur_musical" target="_blank" rel="noopener" style="--lang:#3178c6">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">TypeScript</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">lecteur_musical</span>
+            <span class="repo-card__desc">Lecteur de musique web.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/chatbot" target="_blank" rel="noopener" style="--lang:#f1e05a">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">JavaScript</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">chatbot</span>
+            <span class="repo-card__desc">Interface de chatbot conversationnel.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/sensor" target="_blank" rel="noopener" style="--lang:#3572A5">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">Python</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">sensor</span>
+            <span class="repo-card__desc">Compétition Kaggle — détection de comportements à partir de capteurs.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/introvert_extravert" target="_blank" rel="noopener" style="--lang:#3572A5">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">Python</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">introvert_extravert</span>
+            <span class="repo-card__desc">Compétition Kaggle — Playground Series.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/mlops_td" target="_blank" rel="noopener" style="--lang:#3572A5">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">Python</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">mlops_td</span>
+            <span class="repo-card__desc">Travaux pratiques MLOps — pipeline &amp; déploiement.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/NLP_la_police" target="_blank" rel="noopener" style="--lang:#DA5B0B">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">Jupyter</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">NLP_la_police</span>
+            <span class="repo-card__desc">Traitement automatique du langage naturel.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/Vision-artificielle" target="_blank" rel="noopener" style="--lang:#e16737">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">MATLAB</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">Vision-artificielle</span>
+            <span class="repo-card__desc">Vision par ordinateur en MATLAB.</span>
+          </a>
+
+          <a class="repo-card" href="https://github.com/jrj37/demineur" target="_blank" rel="noopener" style="--lang:#f34b7d">
+            <span class="repo-card__top">
+              <span class="repo-card__dot" aria-hidden="true"></span>
+              <span class="repo-card__lang">C++</span>
+              <span class="repo-card__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span class="repo-card__name">demineur</span>
+            <span class="repo-card__desc">Jeu du démineur en C++.</span>
+          </a>
+        </div>
+
+        <a class="cta cta--ghost repos__all" href="https://github.com/jrj37?tab=repositories" target="_blank" rel="noopener">
+          <span class="cta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+            </svg>
+          </span>
+          <span class="cta__label">Voir tous les dépôts sur GitHub</span>
+        </a>
+      </section>
+      </div><!-- /view repos -->
+
+      <!-- ===================== VIEW: BLOG ===================== -->
+      <div class="view" id="view-blog" data-view="blog">
+      <section class="blog" aria-labelledby="blog-title">
+        <header class="section__header">
+          <span class="mono mono--dim">// NOTES</span>
+          <h2 id="blog-title" class="section__title">Blog</h2>
+        </header>
+
+        <span class="blog__note">Section en construction&nbsp;— premières notes bientôt</span>
+
+        <div class="blog__list">
+          <article class="blog__entry">
+            <div class="blog__date">À&nbsp;VENIR</div>
+            <div class="blog__body">
+              <h3 class="blog__title">Fine-tuner un Vision Transformer sur des IRM cérébrales</h3>
+              <p class="blog__excerpt">
+                Du dataset au modèle servi&nbsp;: préparation des coupes, fine-tuning d'un
+                ViT-Base, suivi MLflow et mise en production via FastAPI.
+              </p>
+            </div>
+            <span class="blog__status">Bientôt</span>
+          </article>
+
+          <article class="blog__entry">
+            <div class="blog__date">À&nbsp;VENIR</div>
+            <div class="blog__body">
+              <h3 class="blog__title">Whisper en local&nbsp;: un agent vocal sans clé API</h3>
+              <p class="blog__excerpt">
+                Capture micro AudioWorklet, transcription Whisper côté serveur en WebSocket
+                et parsing fuzzy des commandes pour piloter un agent en temps réel.
+              </p>
+            </div>
+            <span class="blog__status">Bientôt</span>
+          </article>
+
+          <article class="blog__entry">
+            <div class="blog__date">À&nbsp;VENIR</div>
+            <div class="blog__body">
+              <h3 class="blog__title">Des signaux de trading multi-facteurs lus par un LLM</h3>
+              <p class="blog__excerpt">
+                Combiner RSI, moyennes mobiles et lecture d'actualités par LLM pour produire
+                un signal buy/sell avec un score de confiance interprétable.
+              </p>
+            </div>
+            <span class="blog__status">Bientôt</span>
+          </article>
+        </div>
+      </section>
+      </div><!-- /view blog -->
+
+      <!-- Pied de page minimal -->
+      <footer class="contact" aria-label="Pied de page">
+        <div class="contact__inner">
           <div class="contact__bottom mono">
             <span>© JRJ37 · MMXXVI</span>
             <span class="mono--dim">CONSTRUIT EN TYPESCRIPT&nbsp;·&nbsp;DÉPLOYÉ SUR GITHUB PAGES</span>

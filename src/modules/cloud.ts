@@ -861,10 +861,9 @@ export function initCloud(canvas: HTMLCanvasElement, markers: CloudMarker[]): vo
     canvas.style.cursor = '';
 
     setTimeout(() => {
-      const target = document.querySelector(href);
-      if (target instanceof HTMLElement) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      // Route through the hash so the view switches to Projets (and scrolls to
+      // the target) instead of trying to scroll a section that's display:none.
+      location.hash = href;
     }, CONVERGE_NAVIGATE_AT);
   });
 

@@ -30,11 +30,14 @@ The page is a single HTML document (`index.html`) that pulls in:
 1. `/src/style.css` — the design system (CSS variables + section styles, no preprocessor).
 2. `/src/main.ts` — the boot function that wires DOM nodes to behavior modules.
 
+The page is a hash-routed single-page app: `index.html` holds five `[data-view]` containers (`about`, `cv`, `projets`, `repos`, `blog`) and `modules/router.ts` toggles the active one from `location.hash`, syncing the floating pill nav.
+
 Each module is a single named export taking the DOM element it owns:
-- `modules/ticker.ts` — renders the scrolling Bloomberg-style ticker tape.
+- `modules/router.ts` — hash router; shows the active view, highlights the nav, resolves project anchors (`#bot-trading`, …) to the Projets view.
 - `modules/clock.ts` — live `HH:MM:SS` in the status bar, updates every second.
 - `modules/counter.ts` — count-up animation for the hero stats, triggered by `IntersectionObserver`.
 - `modules/equity-curve.ts` — deterministic synthetic random-walk rendered as an animated SVG path for the bot trading project.
+- `modules/cloud.ts` — interactive WebGL galaxy in the hero; each star is a project (click routes to Projets).
 
 To add a new behavior, add a module under `src/modules/`, then mount it from `boot()` in `src/main.ts`.
 

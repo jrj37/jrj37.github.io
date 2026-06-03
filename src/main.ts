@@ -1,5 +1,5 @@
 import './style.css';
-import { initTicker } from './modules/ticker';
+import { initRouter } from './modules/router';
 import { initClock } from './modules/clock';
 import { initEquityCurve } from './modules/equity-curve';
 import { initCloud, type CloudMarker } from './modules/cloud';
@@ -45,8 +45,8 @@ const PROJECT_MARKERS: CloudMarker[] = [
 ];
 
 function boot(): void {
-  const tickerEl = document.getElementById('ticker-track');
-  if (tickerEl) initTicker(tickerEl);
+  // Router first so the correct view is active before other modules measure.
+  initRouter();
 
   const clockEl = document.getElementById('clock');
   if (clockEl) initClock(clockEl);
