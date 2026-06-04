@@ -807,7 +807,7 @@
           <ol class="resume__list">
             <li class="resume__entry">
               <div class="resume__period">
-                <span class="resume__date mono">2025&nbsp;— EN COURS</span>
+                <span class="resume__date mono">11/2025&nbsp;— EN COURS</span>
                 <span class="resume__loc mono mono--dim">PARIS&nbsp;·&nbsp;FREELANCE</span>
               </div>
               <article class="resume__body">
@@ -816,23 +816,33 @@
                   <span class="resume__company mono">DIBSTEUR</span>
                 </header>
                 <p class="resume__desc">
-                  IA multivariée prédisant le potentiel financier des artistes — outil
-                  stratégique d'aide à la décision pour sécuriser et rentabiliser les
-                  nouvelles signatures. Infrastructure cloud AWS&nbsp;+&nbsp;PostgreSQL&nbsp;RDS,
-                  app TypeScript pour les stats et le classement des artistes.
+                  Pipeline LLM multi-étapes (classification d'e-mails → extraction structurée →
+                  génération de contrats DOCX/PDF) automatisant l'ensemble des processus de
+                  signature des artistes. Modèle de prédiction de séries temporelles
+                  (Transformer) estimant le potentiel financier des artistes sur 52&nbsp;semaines,
+                  couplé à un moteur de scoring multicritère (streams, notoriété sociale,
+                  volatilité) — outil d'aide à la décision pour sécuriser les signatures. Agent
+                  conversationnel interrogeant les données en langage naturel, alimenté par un
+                  pipeline d'ingestion d'API musicales (rate-limiting adaptatif, feature
+                  engineering temporel). Industrialisation de bout en bout&nbsp;: backend
+                  FastAPI/PostgreSQL, infra AWS en Terraform (EC2, RDS, ECR, Secrets&nbsp;Manager)
+                  et CI/CD GitHub&nbsp;Actions.
                 </p>
                 <ul class="resume__kpi">
-                  <li><strong class="hl-up">AUTO</strong>Automatisation de la création des contrats&nbsp;— un LLM analyse les échanges d'e-mails entrants et génère les drafts.</li>
+                  <li><strong class="hl-up">−75%</strong>de temps sur la création des contrats.</li>
+                  <li><strong class="hl-up">52&nbsp;sem.</strong>d'horizon de prédiction du potentiel artiste.</li>
                 </ul>
                 <ul class="resume__tech">
-                  <li>AWS</li>
-                  <li>PostgreSQL</li>
-                  <li>Docker</li>
+                  <li>LangChain</li>
+                  <li>LangGraph</li>
                   <li>OpenRouter</li>
-                  <li>ElevenLabs</li>
-                  <li>MCP&nbsp;server</li>
-                  <li>TypeScript</li>
-                  <li>Cloudflare</li>
+                  <li>MCP</li>
+                  <li>FastAPI</li>
+                  <li>PostgreSQL</li>
+                  <li>AWS</li>
+                  <li>Terraform</li>
+                  <li>Docker</li>
+                  <li>CI/CD</li>
                 </ul>
               </article>
             </li>
