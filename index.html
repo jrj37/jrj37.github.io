@@ -149,21 +149,11 @@
             <button
               type="button"
               class="legend-item"
-              data-marker-jump="BOT TRADING"
-              onclick="location.hash='#bot-trading'"
+              data-marker-jump="COMMAND VOICE"
+              onclick="location.hash='#command-voice'"
             >
-              <span class="legend-item__dot legend-item__dot--red" aria-hidden="true"></span>
-              <span class="legend-item__label mono">Bot trading</span>
-              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
-            </button>
-            <button
-              type="button"
-              class="legend-item"
-              data-marker-jump="JOURNAL SPORT"
-              onclick="location.hash='#journal-sport'"
-            >
-              <span class="legend-item__dot legend-item__dot--green" aria-hidden="true"></span>
-              <span class="legend-item__label mono">Journal sport</span>
+              <span class="legend-item__dot legend-item__dot--indigo" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Agent vocal</span>
               <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
             <button
@@ -179,11 +169,21 @@
             <button
               type="button"
               class="legend-item"
-              data-marker-jump="COMMAND VOICE"
-              onclick="location.hash='#command-voice'"
+              data-marker-jump="BOT TRADING"
+              onclick="location.hash='#bot-trading'"
             >
-              <span class="legend-item__dot legend-item__dot--indigo" aria-hidden="true"></span>
-              <span class="legend-item__label mono">Agent vocal</span>
+              <span class="legend-item__dot legend-item__dot--red" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Bot trading</span>
+              <span class="legend-item__arrow mono" aria-hidden="true">→</span>
+            </button>
+            <button
+              type="button"
+              class="legend-item"
+              data-marker-jump="JOURNAL SPORT"
+              onclick="location.hash='#journal-sport'"
+            >
+              <span class="legend-item__dot legend-item__dot--green" aria-hidden="true"></span>
+              <span class="legend-item__label mono">Journal sport</span>
               <span class="legend-item__arrow mono" aria-hidden="true">→</span>
             </button>
           </div>
@@ -203,10 +203,294 @@
         </header>
       </section>
 
+      <!-- Project: Command Voice Robot -->
+      <section class="project" id="command-voice" aria-labelledby="voice-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 001</span>
+          <span class="badge badge--indigo">
+            <span class="badge__dot"></span>
+            <span class="mono">AGENT&nbsp;IA&nbsp;·&nbsp;BFS&nbsp;+&nbsp;VOIX</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="voice-title">
+              Agent vocal<br />
+              <em>autonome</em>
+            </h2>
+            <p class="project__desc">
+              Un robot téléguidé à la voix qui explore une grille avec une
+              <strong class="hl-indigo">vision limitée</strong>&nbsp;— l'agent
+              planifie son trajet en <strong class="hl-indigo">BFS</strong>
+              pendant qu'on lui glisse des indices à l'oreille
+              («&nbsp;<em>près de la fontaine</em>&nbsp;»).
+              <span class="project__desc-soft">
+                Backend Python&nbsp;+&nbsp;FastAPI streamé en WebSocket, reconnaissance
+                vocale Whisper local (français, sans clé&nbsp;API), parser fuzzy
+                des commandes. Frontend React&nbsp;+&nbsp;Pixi.js avec capture micro
+                AudioWorklet et rendu Canvas. L'agent fait du pathfinding sur
+                la portion connue de la carte et replanifie à chaque nouveau
+                tile dévoilé.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Agent</dt>
+                <dd>BFS&nbsp;·&nbsp;FOV</dd>
+              </div>
+              <div>
+                <dt>Voix</dt>
+                <dd>Whisper&nbsp;local</dd>
+              </div>
+              <div>
+                <dt>Transport</dt>
+                <dd>WebSocket&nbsp;PCM</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;Open&nbsp;source</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>Whisper</li>
+              <li>WebSocket</li>
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Pixi.js</li>
+              <li>Vite</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--ghost" href="https://github.com/jrj37/command_voice_robot" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart project__chart--voice" aria-label="Commandes vocales reconnues">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">VOIX&nbsp;→&nbsp;ACTION</div>
+                <div class="chart__price">
+                  <span class="chart__price--text">«&nbsp;<em>cherche les clés</em>&nbsp;»</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;LIVE</div>
+                <div class="mono mono--dim">WHISPER&nbsp;·&nbsp;FR</div>
+              </div>
+            </header>
+
+            <div class="chart__signal">
+              <span class="signal-pill signal-pill--indigo">
+                <span class="signal-pill__dot"></span>
+                <span class="mono">MIC</span>
+                <span class="voice-wave" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </span>
+                <span class="mono signal-pill__pct">−24&nbsp;dB</span>
+              </span>
+              <span class="mono mono--dim chart__signal-label">ÉCOUTE&nbsp;EN&nbsp;COURS</span>
+            </div>
+
+            <ul class="voice-log" aria-label="Mapping voix vers actions">
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">avance</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">ROBOT.forward()</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">ramasse</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">ROBOT.grab()</span>
+              </li>
+              <li class="voice-log__item is-active">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">cherche les clés</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">AGENT.start(keys)</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">près de la fontaine</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">AGENT.hint(fontaine)</span>
+              </li>
+              <li class="voice-log__item">
+                <span class="voice-log__mic" aria-hidden="true">▶</span>
+                <span class="voice-log__phrase">stop</span>
+                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
+                <span class="voice-log__action mono">RESET</span>
+              </li>
+            </ul>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">STT</div>
+                <div class="chart__stat-value">Whisper</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">VOIX</div>
+                <div class="chart__stat-value">FR</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">DÉLAI</div>
+                <div class="chart__stat-value up">180&nbsp;ms</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">CMDS</div>
+                <div class="chart__stat-value">12</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Project: JRscan — Brain tumor detection -->
+      <section class="project" id="tumor-detection" aria-labelledby="tumor-title">
+        <header class="project__header">
+          <span class="mono mono--dim">// PROJET 002</span>
+          <span class="badge badge--cobalt">
+            <span class="badge__dot"></span>
+            <span class="mono">ML&nbsp;·&nbsp;VISION TRANSFORMER</span>
+          </span>
+        </header>
+
+        <div class="project__grid">
+          <div class="project__copy">
+            <h2 class="project__title" id="tumor-title">
+              Détection<br />
+              <em>de tumeurs</em>
+            </h2>
+            <p class="project__desc">
+              Classification d'IRM cérébrales par un Vision&nbsp;Transformer fine-tuné&nbsp;—
+              quatre classes (<strong class="hl-down">gliome</strong>,
+              <strong class="hl-down">méningiome</strong>, <strong class="hl-down">adénome</strong>,
+              ou <strong class="hl-up">sain</strong>) avec score de confiance par prédiction.
+              <span class="project__desc-soft">
+                Backend FastAPI servant un modèle PyTorch (ViT-Base 16×16) tracké via MLflow,
+                configuration Hydra, frontend Next.js&nbsp;+&nbsp;Shadcn pour l'upload et la
+                visualisation. Outil éducatif&nbsp;— pas un dispositif médical.
+              </span>
+            </p>
+
+            <dl class="project__specs mono">
+              <div>
+                <dt>Modèle</dt>
+                <dd>ViT-Base&nbsp;16×16</dd>
+              </div>
+              <div>
+                <dt>Classes</dt>
+                <dd>4&nbsp;·&nbsp;IRM</dd>
+              </div>
+              <div>
+                <dt>Stack ML</dt>
+                <dd>PyTorch&nbsp;·&nbsp;MLflow</dd>
+              </div>
+              <div>
+                <dt>Statut</dt>
+                <dd class="up">↑&nbsp;En&nbsp;dev</dd>
+              </div>
+            </dl>
+
+            <ul class="project__tech" aria-label="Stack technique">
+              <li>PyTorch</li>
+              <li>Transformers</li>
+              <li>FastAPI</li>
+              <li>MLflow</li>
+              <li>Hydra</li>
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>Shadcn</li>
+            </ul>
+
+            <div class="project__ctas">
+              <a class="cta cta--ghost" href="https://github.com/jrj37/detection-de-tumeurs-au-cerveau" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
+                <span class="cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </span>
+                <span class="cta__label">Voir le dépôt</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="project__chart project__chart--tumor" aria-label="Aperçu classification IRM">
+            <header class="chart__header">
+              <div>
+                <div class="mono mono--dim">SCAN&nbsp;#042&nbsp;·&nbsp;IRM AXIAL</div>
+                <div class="chart__price">
+                  <span class="chart__price--text">Méningiome</span>
+                </div>
+              </div>
+              <div class="chart__delta">
+                <div class="up mono">▲&nbsp;94.2%</div>
+                <div class="mono mono--dim">CONFIANCE</div>
+              </div>
+            </header>
+
+            <ul class="prob-list" aria-label="Probabilités par classe">
+              <li class="prob-item is-top">
+                <span class="mono prob-item__label">Méningiome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 94%"></span></span>
+                <span class="mono prob-item__pct">94.2%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Gliome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 4%"></span></span>
+                <span class="mono prob-item__pct">3.8%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Adénome</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 2%"></span></span>
+                <span class="mono prob-item__pct">1.5%</span>
+              </li>
+              <li class="prob-item">
+                <span class="mono prob-item__label">Sain</span>
+                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 1%"></span></span>
+                <span class="mono prob-item__pct">0.5%</span>
+              </li>
+            </ul>
+
+            <footer class="chart__stats">
+              <div>
+                <div class="mono mono--dim">ACCURACY</div>
+                <div class="chart__stat-value">96.4%</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">CLASSES</div>
+                <div class="chart__stat-value">4</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">PARAMS</div>
+                <div class="chart__stat-value">86&nbsp;M</div>
+              </div>
+              <div>
+                <div class="mono mono--dim">EPOCH</div>
+                <div class="chart__stat-value">12</div>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
       <!-- Project: Bot Trading -->
       <section class="project" id="bot-trading" aria-labelledby="project-title">
         <header class="project__header">
-          <span class="mono mono--dim">// PROJET 001</span>
+          <span class="mono mono--dim">// PROJET 003</span>
           <span class="badge">
             <span class="badge__dot"></span>
             <span class="mono">DÉPLOYÉ&nbsp;·&nbsp;VERCEL</span>
@@ -361,7 +645,7 @@
       <!-- Project: Journal de sport (iOS) -->
       <section class="project" id="journal-sport" aria-labelledby="sport-title">
         <header class="project__header">
-          <span class="mono mono--dim">// PROJET 002</span>
+          <span class="mono mono--dim">// PROJET 004</span>
           <span class="badge badge--green">
             <span class="badge__dot"></span>
             <span class="mono">iOS&nbsp;·&nbsp;SWIFTUI</span>
@@ -489,290 +773,6 @@
               <div>
                 <div class="mono mono--dim">EXOS</div>
                 <div class="chart__stat-value">24</div>
-              </div>
-            </footer>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Project: JRscan — Brain tumor detection -->
-      <section class="project" id="tumor-detection" aria-labelledby="tumor-title">
-        <header class="project__header">
-          <span class="mono mono--dim">// PROJET 003</span>
-          <span class="badge badge--cobalt">
-            <span class="badge__dot"></span>
-            <span class="mono">ML&nbsp;·&nbsp;VISION TRANSFORMER</span>
-          </span>
-        </header>
-
-        <div class="project__grid">
-          <div class="project__copy">
-            <h2 class="project__title" id="tumor-title">
-              Détection<br />
-              <em>de tumeurs</em>
-            </h2>
-            <p class="project__desc">
-              Classification d'IRM cérébrales par un Vision&nbsp;Transformer fine-tuné&nbsp;—
-              quatre classes (<strong class="hl-down">gliome</strong>,
-              <strong class="hl-down">méningiome</strong>, <strong class="hl-down">adénome</strong>,
-              ou <strong class="hl-up">sain</strong>) avec score de confiance par prédiction.
-              <span class="project__desc-soft">
-                Backend FastAPI servant un modèle PyTorch (ViT-Base 16×16) tracké via MLflow,
-                configuration Hydra, frontend Next.js&nbsp;+&nbsp;Shadcn pour l'upload et la
-                visualisation. Outil éducatif&nbsp;— pas un dispositif médical.
-              </span>
-            </p>
-
-            <dl class="project__specs mono">
-              <div>
-                <dt>Modèle</dt>
-                <dd>ViT-Base&nbsp;16×16</dd>
-              </div>
-              <div>
-                <dt>Classes</dt>
-                <dd>4&nbsp;·&nbsp;IRM</dd>
-              </div>
-              <div>
-                <dt>Stack ML</dt>
-                <dd>PyTorch&nbsp;·&nbsp;MLflow</dd>
-              </div>
-              <div>
-                <dt>Statut</dt>
-                <dd class="up">↑&nbsp;En&nbsp;dev</dd>
-              </div>
-            </dl>
-
-            <ul class="project__tech" aria-label="Stack technique">
-              <li>PyTorch</li>
-              <li>Transformers</li>
-              <li>FastAPI</li>
-              <li>MLflow</li>
-              <li>Hydra</li>
-              <li>Next.js</li>
-              <li>TypeScript</li>
-              <li>Shadcn</li>
-            </ul>
-
-            <div class="project__ctas">
-              <a class="cta cta--ghost" href="https://github.com/jrj37/detection-de-tumeurs-au-cerveau" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
-                <span class="cta__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
-                  </svg>
-                </span>
-                <span class="cta__label">Voir le dépôt</span>
-              </a>
-            </div>
-          </div>
-
-          <aside class="project__chart project__chart--tumor" aria-label="Aperçu classification IRM">
-            <header class="chart__header">
-              <div>
-                <div class="mono mono--dim">SCAN&nbsp;#042&nbsp;·&nbsp;IRM AXIAL</div>
-                <div class="chart__price">
-                  <span class="chart__price--text">Méningiome</span>
-                </div>
-              </div>
-              <div class="chart__delta">
-                <div class="up mono">▲&nbsp;94.2%</div>
-                <div class="mono mono--dim">CONFIANCE</div>
-              </div>
-            </header>
-
-            <ul class="prob-list" aria-label="Probabilités par classe">
-              <li class="prob-item is-top">
-                <span class="mono prob-item__label">Méningiome</span>
-                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 94%"></span></span>
-                <span class="mono prob-item__pct">94.2%</span>
-              </li>
-              <li class="prob-item">
-                <span class="mono prob-item__label">Gliome</span>
-                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 4%"></span></span>
-                <span class="mono prob-item__pct">3.8%</span>
-              </li>
-              <li class="prob-item">
-                <span class="mono prob-item__label">Adénome</span>
-                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 2%"></span></span>
-                <span class="mono prob-item__pct">1.5%</span>
-              </li>
-              <li class="prob-item">
-                <span class="mono prob-item__label">Sain</span>
-                <span class="prob-item__bar"><span class="prob-item__fill" style="--w: 1%"></span></span>
-                <span class="mono prob-item__pct">0.5%</span>
-              </li>
-            </ul>
-
-            <footer class="chart__stats">
-              <div>
-                <div class="mono mono--dim">ACCURACY</div>
-                <div class="chart__stat-value">96.4%</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">CLASSES</div>
-                <div class="chart__stat-value">4</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">PARAMS</div>
-                <div class="chart__stat-value">86&nbsp;M</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">EPOCH</div>
-                <div class="chart__stat-value">12</div>
-              </div>
-            </footer>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Project: Command Voice Robot -->
-      <section class="project" id="command-voice" aria-labelledby="voice-title">
-        <header class="project__header">
-          <span class="mono mono--dim">// PROJET 004</span>
-          <span class="badge badge--indigo">
-            <span class="badge__dot"></span>
-            <span class="mono">AGENT&nbsp;IA&nbsp;·&nbsp;BFS&nbsp;+&nbsp;VOIX</span>
-          </span>
-        </header>
-
-        <div class="project__grid">
-          <div class="project__copy">
-            <h2 class="project__title" id="voice-title">
-              Agent vocal<br />
-              <em>autonome</em>
-            </h2>
-            <p class="project__desc">
-              Un robot téléguidé à la voix qui explore une grille avec une
-              <strong class="hl-indigo">vision limitée</strong>&nbsp;— l'agent
-              planifie son trajet en <strong class="hl-indigo">BFS</strong>
-              pendant qu'on lui glisse des indices à l'oreille
-              («&nbsp;<em>près de la fontaine</em>&nbsp;»).
-              <span class="project__desc-soft">
-                Backend Python&nbsp;+&nbsp;FastAPI streamé en WebSocket, reconnaissance
-                vocale Whisper local (français, sans clé&nbsp;API), parser fuzzy
-                des commandes. Frontend React&nbsp;+&nbsp;Pixi.js avec capture micro
-                AudioWorklet et rendu Canvas. L'agent fait du pathfinding sur
-                la portion connue de la carte et replanifie à chaque nouveau
-                tile dévoilé.
-              </span>
-            </p>
-
-            <dl class="project__specs mono">
-              <div>
-                <dt>Agent</dt>
-                <dd>BFS&nbsp;·&nbsp;FOV</dd>
-              </div>
-              <div>
-                <dt>Voix</dt>
-                <dd>Whisper&nbsp;local</dd>
-              </div>
-              <div>
-                <dt>Transport</dt>
-                <dd>WebSocket&nbsp;PCM</dd>
-              </div>
-              <div>
-                <dt>Statut</dt>
-                <dd class="up">↑&nbsp;Open&nbsp;source</dd>
-              </div>
-            </dl>
-
-            <ul class="project__tech" aria-label="Stack technique">
-              <li>Python</li>
-              <li>FastAPI</li>
-              <li>Whisper</li>
-              <li>WebSocket</li>
-              <li>React</li>
-              <li>TypeScript</li>
-              <li>Pixi.js</li>
-              <li>Vite</li>
-            </ul>
-
-            <div class="project__ctas">
-              <a class="cta cta--ghost" href="https://github.com/jrj37/command_voice_robot" target="_blank" rel="noopener" aria-label="Voir le dépôt GitHub">
-                <span class="cta__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
-                  </svg>
-                </span>
-                <span class="cta__label">Voir le dépôt</span>
-              </a>
-            </div>
-          </div>
-
-          <aside class="project__chart project__chart--voice" aria-label="Commandes vocales reconnues">
-            <header class="chart__header">
-              <div>
-                <div class="mono mono--dim">VOIX&nbsp;→&nbsp;ACTION</div>
-                <div class="chart__price">
-                  <span class="chart__price--text">«&nbsp;<em>cherche les clés</em>&nbsp;»</span>
-                </div>
-              </div>
-              <div class="chart__delta">
-                <div class="up mono">▲&nbsp;LIVE</div>
-                <div class="mono mono--dim">WHISPER&nbsp;·&nbsp;FR</div>
-              </div>
-            </header>
-
-            <div class="chart__signal">
-              <span class="signal-pill signal-pill--indigo">
-                <span class="signal-pill__dot"></span>
-                <span class="mono">MIC</span>
-                <span class="voice-wave" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span>
-                </span>
-                <span class="mono signal-pill__pct">−24&nbsp;dB</span>
-              </span>
-              <span class="mono mono--dim chart__signal-label">ÉCOUTE&nbsp;EN&nbsp;COURS</span>
-            </div>
-
-            <ul class="voice-log" aria-label="Mapping voix vers actions">
-              <li class="voice-log__item">
-                <span class="voice-log__mic" aria-hidden="true">▶</span>
-                <span class="voice-log__phrase">avance</span>
-                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
-                <span class="voice-log__action mono">ROBOT.forward()</span>
-              </li>
-              <li class="voice-log__item">
-                <span class="voice-log__mic" aria-hidden="true">▶</span>
-                <span class="voice-log__phrase">ramasse</span>
-                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
-                <span class="voice-log__action mono">ROBOT.grab()</span>
-              </li>
-              <li class="voice-log__item is-active">
-                <span class="voice-log__mic" aria-hidden="true">▶</span>
-                <span class="voice-log__phrase">cherche les clés</span>
-                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
-                <span class="voice-log__action mono">AGENT.start(keys)</span>
-              </li>
-              <li class="voice-log__item">
-                <span class="voice-log__mic" aria-hidden="true">▶</span>
-                <span class="voice-log__phrase">près de la fontaine</span>
-                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
-                <span class="voice-log__action mono">AGENT.hint(fontaine)</span>
-              </li>
-              <li class="voice-log__item">
-                <span class="voice-log__mic" aria-hidden="true">▶</span>
-                <span class="voice-log__phrase">stop</span>
-                <span class="voice-log__arrow mono" aria-hidden="true">→</span>
-                <span class="voice-log__action mono">RESET</span>
-              </li>
-            </ul>
-
-            <footer class="chart__stats">
-              <div>
-                <div class="mono mono--dim">STT</div>
-                <div class="chart__stat-value">Whisper</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">VOIX</div>
-                <div class="chart__stat-value">FR</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">DÉLAI</div>
-                <div class="chart__stat-value up">180&nbsp;ms</div>
-              </div>
-              <div>
-                <div class="mono mono--dim">CMDS</div>
-                <div class="chart__stat-value">12</div>
               </div>
             </footer>
           </aside>
@@ -1210,44 +1210,13 @@
           <h2 id="blog-title" class="section__title">Blog</h2>
         </header>
 
-        <span class="blog__note">Section en construction&nbsp;— premières notes bientôt</span>
-
-        <div class="blog__list">
-          <article class="blog__entry">
-            <div class="blog__date">À&nbsp;VENIR</div>
-            <div class="blog__body">
-              <h3 class="blog__title">Fine-tuner un Vision Transformer sur des IRM cérébrales</h3>
-              <p class="blog__excerpt">
-                Du dataset au modèle servi&nbsp;: préparation des coupes, fine-tuning d'un
-                ViT-Base, suivi MLflow et mise en production via FastAPI.
-              </p>
-            </div>
-            <span class="blog__status">Bientôt</span>
-          </article>
-
-          <article class="blog__entry">
-            <div class="blog__date">À&nbsp;VENIR</div>
-            <div class="blog__body">
-              <h3 class="blog__title">Whisper en local&nbsp;: un agent vocal sans clé API</h3>
-              <p class="blog__excerpt">
-                Capture micro AudioWorklet, transcription Whisper côté serveur en WebSocket
-                et parsing fuzzy des commandes pour piloter un agent en temps réel.
-              </p>
-            </div>
-            <span class="blog__status">Bientôt</span>
-          </article>
-
-          <article class="blog__entry">
-            <div class="blog__date">À&nbsp;VENIR</div>
-            <div class="blog__body">
-              <h3 class="blog__title">Des signaux de trading multi-facteurs lus par un LLM</h3>
-              <p class="blog__excerpt">
-                Combiner RSI, moyennes mobiles et lecture d'actualités par LLM pour produire
-                un signal buy/sell avec un score de confiance interprétable.
-              </p>
-            </div>
-            <span class="blog__status">Bientôt</span>
-          </article>
+        <div class="blog__soon">
+          <span class="blog__soon-mark mono">EN&nbsp;CONSTRUCTION</span>
+          <h3 class="blog__soon-title"><em>À&nbsp;venir</em></h3>
+          <p class="blog__soon-text">
+            Les premières notes arrivent bientôt&nbsp;— retours d'expérience sur
+            le fine-tuning de modèles, les agents&nbsp;LLM et la mise en production.
+          </p>
         </div>
       </section>
       </div><!-- /view blog -->
