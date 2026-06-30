@@ -815,22 +815,34 @@
                   <h3 class="resume__role">AI engineer</h3>
                   <span class="resume__company mono">DIBSTEUR</span>
                 </header>
-                <p class="resume__desc">
-                  Pipeline LLM multi-étapes (classification d'e-mails → extraction structurée →
-                  génération de contrats DOCX/PDF) automatisant l'ensemble des processus de
-                  signature des artistes. Modèle de prédiction de séries temporelles
-                  (Transformer) estimant le potentiel financier des artistes sur 52&nbsp;semaines,
-                  couplé à un moteur de scoring multicritère (streams, notoriété sociale,
-                  volatilité) — outil d'aide à la décision pour sécuriser les signatures. Agent
-                  conversationnel interrogeant les données en langage naturel, alimenté par un
-                  pipeline d'ingestion d'API musicales (rate-limiting adaptatif, feature
-                  engineering temporel). Industrialisation de bout en bout&nbsp;: backend
-                  FastAPI/PostgreSQL, infra AWS en Terraform (EC2, RDS, ECR, Secrets&nbsp;Manager)
-                  et CI/CD GitHub&nbsp;Actions.
-                </p>
-                <ul class="resume__kpi">
-                  <li><strong class="hl-up">−75%</strong>de temps sur la création des contrats.</li>
-                  <li><strong class="hl-up">52&nbsp;sem.</strong>d'horizon de prédiction du potentiel artiste.</li>
+                <ul class="resume__points">
+                  <li>
+                    <strong>Pipeline LLM multi-étapes</strong>&nbsp;: classification, extraction
+                    structurée et génération de documents DOCX/PDF pour automatiser un processus
+                    documentaire métier auparavant manuel. Gain de temps significatif sur la
+                    production de documents.
+                  </li>
+                  <li>
+                    <strong>Prédiction de séries temporelles</strong>&nbsp;: modèle à architecture
+                    transformer couplé à un moteur de scoring multicritère, livré comme outil
+                    d'aide à la décision pour les équipes métier.
+                  </li>
+                  <li>
+                    <strong>Agent conversationnel IA</strong>&nbsp;: interrogation d'une base de
+                    données métier en langage naturel (LLM via Amazon&nbsp;Bedrock, function
+                    calling)&nbsp;: orchestration agentique multi-tours, RAG sur une base
+                    documentaire, streaming temps réel et génération dynamique de composants UI.
+                  </li>
+                  <li>
+                    <strong>Pipeline de données</strong>&nbsp;: ingestion d'APIs externes
+                    (rate-limiting adaptatif, traitement concurrent) et feature engineering sur
+                    séries temporelles (statistiques glissantes, détection de tendances).
+                  </li>
+                  <li>
+                    <strong>Industrialisation de bout en bout</strong>&nbsp;: backend
+                    FastAPI/PostgreSQL, infrastructure AWS provisionnée en Terraform (EC2, RDS,
+                    ECR, Secrets&nbsp;Manager) et pipeline CI/CD sous GitHub&nbsp;Actions.
+                  </li>
                 </ul>
                 <ul class="resume__tech">
                   <li>LangChain</li>
